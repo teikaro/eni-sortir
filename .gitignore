@@ -1,4 +1,5 @@
-
+#ignorer les réglages de l'IDE
+/.idea/
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
