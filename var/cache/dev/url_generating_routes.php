@@ -15,4 +15,8 @@ return [
     '_profiler_router' => [['token'], ['_controller' => 'web_profiler.controller.router::panelAction'], [], [['text', '/router'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
+    'main_connexion' => [[], ['_controller' => 'App\\Controller\\MainController::connexion'], [], [['text', '/connexion']], [], [], []],
+    'main_home' => [[], ['_controller' => 'App\\Controller\\MainController::home'], [], [['text', '/home']], [], [], []],
+    'sortie_creer' => [[], ['_controller' => 'App\\Controller\\SortieController::index'], [], [['text', '/sortie/creer']], [], [], []],
+    'utilisateur_profil' => [[], ['_controller' => 'App\\Controller\\UserController::index'], [], [['text', '/utilisateur/profil']], [], [], []],
 ];

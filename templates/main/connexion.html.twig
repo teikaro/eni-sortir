@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+    <img src="" alt="logo_sortir" style="width: 500px; height: 500px">
+
+    <label for="identifiant"> Identifiant : <input type="text"></label>
+    <label for="mdp"> Mot de passe : <input type="password"></label>
+
+    <button type="submit"> Connexion </button>
+    <label> <input type="checkbox" name="_remember_me"> Se souvenir de moi </label>
+
+    <a href="#">Mot de passe oublié</a>
+{% endblock %}
