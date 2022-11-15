@@ -15,8 +15,8 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/connexion' => [[['_route' => 'main_connexion', '_controller' => 'App\\Controller\\MainController::connexion'], null, null, null, false, false, null]],
         '/home' => [[['_route' => 'main_home', '_controller' => 'App\\Controller\\MainController::home'], null, null, null, false, false, null]],
-        '/sortie/creer' => [[['_route' => 'sortie_creer', '_controller' => 'App\\Controller\\SortieController::index'], null, null, null, false, false, null]],
-        '/utilisateur/profil' => [[['_route' => 'utilisateur_profil', '_controller' => 'App\\Controller\\UserController::index'], null, null, null, false, false, null]],
+        '/sortie/creation_sortie' => [[['_route' => 'sortie_creationSortie', '_controller' => 'App\\Controller\\SortieController::creationSortie'], null, null, null, false, false, null]],
+        '/utilisateur/profil' => [[['_route' => 'utilisateur_profil', '_controller' => 'App\\Controller\\UserController::profil'], null, null, null, true, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

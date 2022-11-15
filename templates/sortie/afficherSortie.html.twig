@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SortieController!{% endblock %}
+
+{% block body %}
+
+    <img src="#" alt="logo_sortir">
+
+    <a href="#">Accueil</a>
+    <a href="#">Mon profil</a>
+    <a href="#">Se déconnecter</a>
+
+    <!-- PROVISOIRE -->
+    <br>
+    <!-- FIN PROVISOIRE -->
+
+    <h1>Afficher une sortie</h1>
+
+    <label for="modificationNomSortie">Nom de la sortie :</label>
+    <input id="modificationNomSortie" type="text" readonly>
+
+    <label for="modificationDateDebutSortie">Date et heure de la sortie :</label>
+    <input id="modificationDateDebutSortie" type="datetime-local" readonly>
+
+    <label for="modificationDateFinInscriptionSortie">Date limite d'inscription :</label>
+    <input type="date" id="modificationDateFinInscriptionSortie" readonly>
+
+    <label for="modificationPlace">Nombre de places :</label>
+    <input id="modificationPlace" type="text" readonly>
+
+    <label for="modificationDuree">Durée :</label>
+    <input type="number" id="modificationDuree" placeholder="durée en minutes" readonly>
+
+    <label for="modificationDescription">Description et infos :</label>
+    <textarea id="modificationDescription" placeholder="Description et informations utiles à savoir pour votre sortie" readonly></textarea>
+
+    <label for="modificationCampus">Campus :</label>
+    <select name="modificationCampus" id="modificationCampus" disabled>
+        <option value="HEC">HEC</option>
+        <option value="ENI">ENI</option>
+        <option value="BSB">BSB</option>
+    </select>
+
+    <label for="modificationVille">Ville :</label>
+    <select name="modificationVille" id="modificationVille" disabled>
+        <option value="Quetigny">Quetigny</option>
+        <option value="Paris">Paris</option>
+        <option value="Toulouse">Toulouse</option>
+    </select>
+
+    <label for="modificationLieu">lieu de la sortie :</label>
+    <select name="modificationLieu" id="modificationLieu" disabled>
+        <option value="Bar">Bar</option>
+        <option value="Starbucks">Starbucks</option>
+        <option value="Tennis">Tennis</option>
+    </select>
+
+    <label for="modificationRue">Rue  :</label>
+    <input id="modificationRue" type="text" readonly>
+
+    <label for="modificationCP">Code postal :</label>
+    <input id="modificationCP" type="text" readonly>
+
+    <label for="modificationLatitude">Latitude  :</label>
+    <input id="modificationLatitude" type="text" readonly>
+
+    <label for="modificationLongitude">Longitude :</label>
+    <input id="modificationLongitude" type="text" readonly>
+
+    <button type="submit">Modifier</button>
+    <button type="submit">Enregistrer</button>
+    <button type="submit">Annuler les modifications</button>
+    <button type="submit">Publier la sortie</button>
+    <button type="submit">Annuler la sortie</button>
+
+{% endblock %}

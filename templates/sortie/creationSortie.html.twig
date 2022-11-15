@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SortieController!{% endblock %}
+
+{% block body %}
+
+    <img src="#" alt="logo_sortir">
+
+    <a href="#">Accueil</a>
+    <a href="#">Mon profil</a>
+    <a href="#">Se déconnecter</a>
+
+    <!-- PROVISOIRE -->
+    <br>
+    <!-- FIN PROVISOIRE -->
+
+    <h1>Créer une sortie</h1>
+
+    <label for="creationNomSortie">Nom de la sortie :</label>
+    <input id="creationNomSortie" type="text">
+
+    <label for="creationDateDebutSortie">Date et heure de la sortie :</label>
+    <input id="creationDateDebutSortie" type="datetime-local">
+
+    <label for="creationDateFinInscriptionSortie">Date limite d'inscription :</label>
+    <input type="date" id="creationDateFinInscriptionSortie">
+
+    <label for="creationPlace">Nombre de places :</label>
+    <input id="creationPlace" type="text">
+
+    <label for="creationDuree">Durée :</label>
+    <input type="number" id="creationDuree" placeholder="durée en minutes">
+
+    <label for="creationDescription">Description et infos :</label>
+    <textarea id="creationDescription" placeholder="Description et informations utiles à savoir pour votre sortie"></textarea>
+
+    <label for="creationCampus">Campus :</label>
+    <select name="creationCampus" id="creationCampus" disabled>
+        <option value="HEC">HEC</option>
+        <option value="ENI">ENI</option>
+        <option value="BSB">BSB</option>
+    </select>
+
+    <label for="creationVille">Ville :</label>
+    <select name="creationVille" id="creationVille">
+        <option value="Quetigny">Quetigny</option>
+        <option value="Paris">Paris</option>
+        <option value="Toulouse">Toulouse</option>
+    </select>
+
+    <label for="creationLieu">lieu de la sortie :</label>
+    <select name="creationLieu" id="creationLieu">
+        <option value="Bar">Bar</option>
+        <option value="Starbucks">Starbucks</option>
+        <option value="Tennis">Tennis</option>
+    </select>
+
+    <label for="creationRue">Rue  :</label>
+    <input id="creationRue" type="text">
+
+    <label for="creationCP">Code postal :</label>
+    <input id="creationCP" type="text">
+
+    <label for="creationLatitude">Latitude  :</label>
+    <input id="creationLatitude" type="text">
+
+    <label for="creationLongitude">Longitude :</label>
+    <input id="creationLongitude" type="text">
+
+    <button type="submit">Enregistrer</button>
+    <button type="submit">Publier la sortie</button>
+    <button type="submit">Annuler</button>
+{% endblock %}
+
+
+
+

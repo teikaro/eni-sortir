@@ -4,4 +4,61 @@
 
 {% block body %}
 
+    <img src="#" alt="logo_sortir">
+
+    <a href="#">Accueil</a>
+    <a href="#">Mon profil</a>
+    <a href="#">Se déconnecter</a>
+
+    <img src="#" alt="photo_profil">
+
+    <h1>Mon profil</h1>
+
+    <label for="creationPseudo">Pseudo :</label>
+    <input id="creationPseudo" type="text">
+
+    <label for="creationPrenom">Prénom :</label>
+    <input id="creationPrenom" type="text" readonly>
+
+    <label for="creationNom">Nom :</label>
+    <input id="creationNom" type="text" readonly>
+
+    <label for="creationTelephone">Téléphone :</label>
+    <input id="creationTelephone" type="text" readonly>
+
+    <label for="creationEmail">Email :</label>
+    <input id="creationEmail" type="text" readonly>
+
+    <label for="creationMdp">Mot de passe :</label>
+    <input id="creationMdp" type="text" readonly>
+
+    <label for="ConfirmationMdp">Confirmation :</label>
+    <input id="ConfirmationMdp" type="text" readonly>
+
+    <!-- PROVISOIRE -->
+    <br>
+    <!-- FIN PROVISOIRE -->
+
+    <label for="choixCampus">Campus :</label>
+    <select name="choixCampus" id="choixCampus" disabled>
+        <option value="HEC">HEC</option>
+        <option value="ENI">ENI</option>
+        <option value="BSB">BSB</option>
+    </select>
+
+    <!-- PROVISOIRE -->
+    <br>
+    <!-- FIN PROVISOIRE -->
+
+    <label for="">Ma photo :</label>
+    <input type="button" value="Télécharger vers le serveur">
+
+    <!-- PROVISOIRE -->
+    <br>
+    <br>
+    <!-- FIN PROVISOIRE -->
+
+    <button type="submit">Enregistrer</button>
+    <button type="submit">Annuler</button>
+
 {% endblock %}

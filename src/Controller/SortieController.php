@@ -10,9 +10,21 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/sortie', name: 'sortie_')]
 class SortieController extends AbstractController
 {
-    #[Route('/creer', name: 'creer')]
-    public function index(): Response
+    #[Route('/creation_sortie', name: 'creationSortie')]
+    public function creationSortie(): Response
     {
-        return $this->render('sortie/creer.html.twig');
+        return $this->render('sortie/creationSortie.html.twig');
+    }
+
+    #[Route('/afficher_sortie', name: 'afficherSortie')]
+    public function modificationSortie(): Response
+    {
+        return $this->render('sortie/afficherSortie.html.twig');
+    }
+
+    #[Route('/annuler_sortie', name: 'annulerSortie')]
+    public function annulerSortie(): Response
+    {
+        return $this->render('sortie/annulerSortie.html.twig');
     }
 }
