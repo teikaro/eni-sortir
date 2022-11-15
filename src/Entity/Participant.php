@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ParticipantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -42,8 +44,20 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $actif = null;
 
-    #[ORM\Column(length: 30, unique: true)]
+    #[ORM\Column(length: 30, unique: true, nullable: true)]
     private ?string $pseudo = null;
+
+    #[ORM\ManyToMany(targetEntity: Sortie::class, mappedBy: 'inscrit')]
+    private Collection $sorties;
+
+    #[ORM\OneToMany(mappedBy: 'organisateur', targetEntity: Sortie::class)]
+    private Collection $mesSorties;
+
+    public function __construct()
+    {
+        $this->sorties = new ArrayCollection();
+        $this->mesSorties = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -183,6 +197,63 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Sortie>
+     */
+    public function getSorties(): Collection
+    {
+        return $this->sorties;
+    }
+
+    public function addSorty(Sortie $sorty): self
+    {
+        if (!$this->sorties->contains($sorty)) {
+            $this->sorties->add($sorty);
+            $sorty->addInscrit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSorty(Sortie $sorty): self
+    {
+        if ($this->sorties->removeElement($sorty)) {
+            $sorty->removeInscrit($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Sortie>
+     */
+    public function getMesSorties(): Collection
+    {
+        return $this->mesSorties;
+    }
+
+    public function addMesSorty(Sortie $mesSorty): self
+    {
+        if (!$this->mesSorties->contains($mesSorty)) {
+            $this->mesSorties->add($mesSorty);
+            $mesSorty->setOrganisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMesSorty(Sortie $mesSorty): self
+    {
+        if ($this->mesSorties->removeElement($mesSorty)) {
+            // set the owning side to null (unless already changed)
+            if ($mesSorty->getOrganisateur() === $this) {
+                $mesSorty->setOrganisateur(null);
+            }
+        }
 
         return $this;
     }
