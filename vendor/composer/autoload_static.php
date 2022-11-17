@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite19794b61a05c1938be8d7d0adf729c2
+class ComposerStaticInite12f194957601ceb8d5b06aeb4df3af7
 {
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -573,7 +573,24 @@ class ComposerStaticInite19794b61a05c1938be8d7d0adf729c2
     );
 
     public static $classMap = array (
+        'App\\Controller\\MainController' => __DIR__ . '/../..' . '/src/Controller/MainController.php',
+        'App\\Controller\\SecurityController' => __DIR__ . '/../..' . '/src/Controller/SecurityController.php',
+        'App\\Controller\\SortieController' => __DIR__ . '/../..' . '/src/Controller/SortieController.php',
+        'App\\Controller\\UserController' => __DIR__ . '/../..' . '/src/Controller/UserController.php',
+        'App\\Entity\\Campus' => __DIR__ . '/../..' . '/src/Entity/Campus.php',
+        'App\\Entity\\Etat' => __DIR__ . '/../..' . '/src/Entity/Etat.php',
+        'App\\Entity\\Lieu' => __DIR__ . '/../..' . '/src/Entity/Lieu.php',
+        'App\\Entity\\Participant' => __DIR__ . '/../..' . '/src/Entity/Participant.php',
+        'App\\Entity\\Sortie' => __DIR__ . '/../..' . '/src/Entity/Sortie.php',
+        'App\\Entity\\Ville' => __DIR__ . '/../..' . '/src/Entity/Ville.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
+        'App\\Repository\\CampusRepository' => __DIR__ . '/../..' . '/src/Repository/CampusRepository.php',
+        'App\\Repository\\EtatRepository' => __DIR__ . '/../..' . '/src/Repository/EtatRepository.php',
+        'App\\Repository\\LieuRepository' => __DIR__ . '/../..' . '/src/Repository/LieuRepository.php',
+        'App\\Repository\\ParticipantRepository' => __DIR__ . '/../..' . '/src/Repository/ParticipantRepository.php',
+        'App\\Repository\\SortieRepository' => __DIR__ . '/../..' . '/src/Repository/SortieRepository.php',
+        'App\\Repository\\VilleRepository' => __DIR__ . '/../..' . '/src/Repository/VilleRepository.php',
+        'App\\Security\\AppAuthenticator' => __DIR__ . '/../..' . '/src/Security/AppAuthenticator.php',
         'Collator' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
@@ -6299,9 +6316,9 @@ class ComposerStaticInite19794b61a05c1938be8d7d0adf729c2
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite19794b61a05c1938be8d7d0adf729c2::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite19794b61a05c1938be8d7d0adf729c2::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite19794b61a05c1938be8d7d0adf729c2::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite12f194957601ceb8d5b06aeb4df3af7::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite12f194957601ceb8d5b06aeb4df3af7::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite12f194957601ceb8d5b06aeb4df3af7::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -13,10 +13,13 @@ return [
         '/_profiler/search_bar' => [[['_route' => '_profiler_search_bar', '_controller' => 'web_profiler.controller.profiler::searchBarAction'], null, null, null, false, false, null]],
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
-        '/connexion' => [[['_route' => 'main_connexion', '_controller' => 'App\\Controller\\MainController::connexion'], null, null, null, false, false, null]],
-        '/home' => [[['_route' => 'main_home', '_controller' => 'App\\Controller\\MainController::home'], null, null, null, false, false, null]],
-        '/sortie/creation_sortie' => [[['_route' => 'sortie_creationSortie', '_controller' => 'App\\Controller\\SortieController::creationSortie'], null, null, null, false, false, null]],
-        '/utilisateur/profil' => [[['_route' => 'utilisateur_profil', '_controller' => 'App\\Controller\\UserController::profil'], null, null, null, true, false, null]],
+        '/portal' => [[['_route' => 'home', '_controller' => 'App\\Controller\\MainController::home'], null, null, null, false, false, null]],
+        '/' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
+        '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
+        '/portail/sortie/creation_sortie' => [[['_route' => 'sortie_creationSortie', '_controller' => 'App\\Controller\\SortieController::creationSortie'], null, null, null, false, false, null]],
+        '/portail/sortie/afficher_sortie' => [[['_route' => 'sortie_afficherSortie', '_controller' => 'App\\Controller\\SortieController::modificationSortie'], null, null, null, false, false, null]],
+        '/portail/sortie/annuler_sortie' => [[['_route' => 'sortie_annulerSortie', '_controller' => 'App\\Controller\\SortieController::annulerSortie'], null, null, null, false, false, null]],
+        '/portail/utilisateur/profil' => [[['_route' => 'utilisateur_profil', '_controller' => 'App\\Controller\\UserController::profil'], null, null, null, true, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

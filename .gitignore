@@ -19,5 +19,5 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-/migrations/Version20221115090757.php
-/migrations/Version20221115092417.php
+/migrations/
+/public/.htaccess

@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /* On prépare le nom des routes de la classe UserController */
-#[Route('/utilisateur', name: 'utilisateur_')]
+#[Route('portail/utilisateur', name: 'utilisateur_')]
 class UserController extends AbstractController
 {
     #[Route('/profil/', name: 'profil')]

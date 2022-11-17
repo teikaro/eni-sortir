@@ -21,14 +21,14 @@ class Etat
         return $this->id;
     }
 
-    public function getLibele(): ?string
+    public function getLibelle(): ?string
     {
-        return $this->libele;
+        return $this->libelle;
     }
 
-    public function setLibele(string $libele): self
+    public function setLibelle(string $libele): self
     {
-        $this->libele = $libele;
+        $this->libelle = $libele;
 
         return $this;
     }
