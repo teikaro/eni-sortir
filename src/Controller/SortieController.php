@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /* On prépare le nom des routes de la classe SortieController */
-#[Route('/sortie', name: 'sortie_')]
+#[Route('portail/sortie', name: 'sortie_')]
 class SortieController extends AbstractController
 {
     #[Route('/creation_sortie', name: 'creationSortie')]
