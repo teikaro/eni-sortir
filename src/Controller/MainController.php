@@ -13,7 +13,7 @@ class MainController extends AbstractController
 
 
     /* Contrôleur de la vue "home" */
-    #[Route('/portail', name: 'home')]
+    #[Route('/portal', name: 'home')]
     public function home(): Response
     {
         return $this->render('main/home.html.twig');

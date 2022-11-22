@@ -10,13 +10,45 @@
     <a href="#">Mon profil</a>
     <a href="#">Se déconnecter</a>
 
-    <!-- PROVISOIRE -->
-    <br>
-    <!-- FIN PROVISOIRE -->
 
     <h1>Créer une sortie</h1>
 
     {{ form(form) }}
+
+
+
+
+    {% for message in app.flashes('success') %}
+        <div style="color:green;">{{ message }}</div>
+    {% endfor %}
+
+
+
+    <script>
+        var $sortie = $('#sortie_lieu');
+
+        $sortie.change(function() {
+
+            var $form = $(this).closest('form');
+
+            var data = {};
+
+            data[$sortie.attr('lieu')] = $sortie.val();
+
+            $.ajax({
+                url : $form.attr('action'),
+                type: $form.attr('method'),
+                data : data,
+                complete: function(html) {
+
+                    $('#sortie_lieu').replaceWith(
+
+                        $(html.responseText).find('#sortie_lieu')
+                    );
+                }
+            });
+        });
+    </script>
 {% endblock %}
 
 

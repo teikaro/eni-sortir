@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +16,7 @@ use App\Entity\Sortie;
 class SortieController extends AbstractController
 {
     #[Route('/creation_sortie', name: 'creationSortie')]
-    public function creationSortie(Request $request): Response
+    public function creationSortie(Request $request, ManagerRegistry $doctrine): Response
     {
 
         $newSortie = new Sortie();
@@ -24,8 +25,17 @@ class SortieController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted()){
-            dump($newSortie);
+        if($form->isSubmitted() && $form->isValid()){
+
+            $em = $this->$doctrine()->getManager();
+
+            $em->persist($newSortie);
+
+            $em->flush();
+
+            $this->addFlash('success', 'Sortie créée avec succès !');
+
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('sortie/creationSortie.html.twig', [
@@ -44,4 +54,5 @@ class SortieController extends AbstractController
     {
         return $this->render('sortie/annulerSortie.html.twig');
     }
+
 }
