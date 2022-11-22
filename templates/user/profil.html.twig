@@ -4,59 +4,38 @@
 
 {% block body %}
 
-    <img src="#" alt="logo_sortir">
-
-    <a href="#">Accueil</a>
-    <a href="#">Mon profil</a>
-    <a href="#">Se déconnecter</a>
 
     <img src="#" alt="photo_profil">
 
     <h1>Mon profil</h1>
 
-    <label for="creationPseudo">Pseudo :</label>
-    <input id="creationPseudo" type="text">
+    {% if app.user.pseudo %}
 
-    <label for="creationPrenom">Prénom :</label>
-    <input id="creationPrenom" type="text" readonly>
+        <li class="fs-4 my-2"> Pseudo : {{ app.user.pseudo }}</li>
 
-    <label for="creationNom">Nom :</label>
-    <input id="creationNom" type="text" readonly>
+    {% else %}
 
-    <label for="creationTelephone">Téléphone :</label>
-    <input id="creationTelephone" type="text" readonly>
+        <li class="fs-4 my-2"> Pseudo : <span class="fst-italic">non renseigné</span></li>
 
-    <label for="creationEmail">Email :</label>
-    <input id="creationEmail" type="text" readonly>
+    {% endif %}
 
-    <label for="creationMdp">Mot de passe :</label>
-    <input id="creationMdp" type="text" readonly>
+    <li class="fs-4 my-2"> Nom : {{ app.user.nom }}</li>
 
-    <label for="ConfirmationMdp">Confirmation :</label>
-    <input id="ConfirmationMdp" type="text" readonly>
+    <li class="fs-4 my-2"> Prénom : {{ app.user.prenom }}</li>
 
-    <!-- PROVISOIRE -->
-    <br>
-    <!-- FIN PROVISOIRE -->
+    <li class="fs-4 my-2"> Téléphone: {{ app.user.telephone }}</li>
 
-    <label for="choixCampus">Campus :</label>
-    <select name="choixCampus" id="choixCampus" disabled>
-        <option value="HEC">HEC</option>
-        <option value="ENI">ENI</option>
-        <option value="BSB">BSB</option>
-    </select>
+    <li class="fs-4 my-2"> Adresse e-mail: {{ app.user.email }}</li>
 
-    <!-- PROVISOIRE -->
-    <br>
-    <!-- FIN PROVISOIRE -->
+    <li class="fs-4 my-2"> Mot de passe : </li>
+
+    <li class="fs-4 my-2"> Confirmation : </li>
+
+    <li class="fs-4 my-2"> Campus : {{ app.user.campus.nom }}</li>
 
     <label for="">Ma photo :</label>
     <input type="button" value="Télécharger vers le serveur">
 
-    <!-- PROVISOIRE -->
-    <br>
-    <br>
-    <!-- FIN PROVISOIRE -->
 
     <button type="submit">Enregistrer</button>
     <button type="submit">Annuler</button>

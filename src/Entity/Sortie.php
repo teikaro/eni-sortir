@@ -206,8 +206,4 @@ class Sortie
 
         return $this;
     }
-
-    public function getAvailableLieux()
-    {
-    }
 }
