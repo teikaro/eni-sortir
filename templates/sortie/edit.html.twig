@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }}Modifier la sortie{% endblock %}
+
+{% block body %}
+    <div class="formContainer">
+    <img src="{{ asset('img/newSortie.svg') }}" alt="Éditer une sortie">
+    <div class="responsiveFormContainer">
+    <h2>Modifier une sortie</h2>
+
+    {% if sortie.organisateur is same as app.user %}
+
+
+        {# ---------------------   MODAL ---------------------- -#}
+        <a class="purpleLink" id="myBtn">Ajouter un lieu</a>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h4>Ajouter un lieu</h4>
+                {{ form_start(formLieu) }}
+                <div class="inputField">
+                    <label for="nom">Nom</label>
+                    {{ form_widget(formLieu.nom) }}
+                </div>
+                <div class="inputField">
+                    <label for="rue">Rue</label>
+                    {{ form_widget(formLieu.rue) }}
+                </div>
+                <div class="inputField">
+                    <label for="Ville">Ville</label>
+                    {{ form_widget(formLieu.Ville) }}
+                </div>
+                <button class="purpleButton" type="submit">Ajouter</button>
+                {{ form_end(formLieu) }}
+            </div>
+        </div>
+
+        <script defer>
+            // Get the modal
+            const modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+            const btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            const span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on the button, open the modal
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+        {# ----- FIN MODAL ----- #}
+
+
+        {{ form_start(form) }}
+        <div class="inputField">
+            <label for="nom">Titre</label>
+            {{ form_widget(form.nom) }}
+        </div>
+        <div class="inputField">
+            <label for="dateHeureDebut">Date et heure de début</label>
+            {{ form_widget(form.dateHeureDebut) }}
+        </div>
+        <div class="inputField">
+            <label for="duree">Durée estimée</label>
+            {{ form_widget(form.duree) }}
+        </div>
+        <div class="inputField">
+            <label for="dateLimiteInscription">Date limite d'inscription</label>
+            {{ form_widget(form.dateLimiteInscription) }}
+        </div>
+        <div class="inputField">
+            <label for="nbInscriptionsMax">Date limite d'inscription</label>
+            {{ form_widget(form.nbInscriptionsMax) }}
+        </div>
+        <div class="inputField">
+            <label for="infosSortie">Description</label>
+            {{ form_widget(form.infosSortie) }}
+        </div>
+        <div class="inputField">
+            <label for="ville">Ville</label>
+            {{ form_widget(form.ville) }}
+        </div>
+        <div class="inputField">
+            <label for="lieu">Lieu</label>
+            {{ form_widget(form.lieu) }}
+        </div>
+        <div class="buttonContainer">
+            <a class="whiteButton" href="{{ path('app_main_connecte') }}">Retour</a>
+            {% if sortie.organisateur is same as (app.user) %}
+                <a class="redButton" href="{{ path('app_sortie_annulation', {'id':sortie.id}) }}">Annuler la sortie</a>
+                <a class="purpleButton" href="{{ path('app_sortie_publier', {'id': sortie.id}) }}">Publier</a>
+            {% endif %}
+            <button class="purpleButton" type="submit">Valider</button>
+        </div>
+        {{ form_end(form) }}
+        </div>
+        </div>
+
+    {% else %}
+        <p>Vous n'êtes pas organisateur de la sortie.</p>
+    {% endif %}
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="{{ asset('js/choixVilleModifier.js') }}"></script>
+
+{% endblock %}
+
+
+
+
+
+

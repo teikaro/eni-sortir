@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Campus;
 use App\Entity\Sortie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -38,6 +39,96 @@ class SortieRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function listeSortieParCampus(Campus $campus)
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb->innerJoin('s.campus', 'campus')
+            ->addSelect('campus');
+
+        $qb->where('s.campus = :campus')
+            ->setParameter('campus', $campus);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    //QUERY BUILDER pour affichage d'une sortie avec les participants.
+
+    public function listeSortieAvecParticipant($id)
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->select('s', 'p')
+            ->join('s.participants', 'p')
+            ->andWhere('s.id = :id')
+            ->setParameter(':id', $id);
+
+        return $qb->getQuery()->getResult();
+
+    }
+
+
+    public function listeDesSortie(){
+        $qb = $this->createQueryBuilder('s')
+            ->select('s','p','e')
+            ->leftJoin('s.participants', 'p')
+            ->leftJoin('s.etat', 'e');
+
+
+            return $qb->getQuery()->getResult();
+    }
+
+
+    public function rechercher($id, $mots = null, $rechercheCampus = null, $organisateur = false,
+                               $inscrit = false, $pasInscrit = false, $dejaPasse = false,
+                               $dateHeureDebut = null, $dateLimiteInscription = null
+    )
+    {
+        $query = $this->createQueryBuilder('s');
+
+        if ($mots != null) {
+            $query->where('MATCH_AGAINST(s.nom, s.infosSortie) AGAINST (:mots boolean)>0')->setParameter('mots', $mots);
+        }
+
+        if ($rechercheCampus != null) {
+            $query->leftJoin('s.campus', 'c');
+            $query->andWhere('c.id = :id')->setParameter('id', $rechercheCampus);
+        }
+
+        if ($organisateur) {
+            $query->andWhere('s.organisateur = :id')->setParameter('id', $id);
+        }
+
+
+        if ($inscrit) {
+            $query->innerJoin('s.participants', 'p');
+            $query->andWhere('p.id = :id')->setParameter('id', $id);
+        }
+
+        if ($pasInscrit) {
+            $query->join('s.participants', 'p');
+            $query->andWhere('p.id != :id')->setParameter('id', $id);
+        }
+
+
+        if ($dejaPasse) {
+            $query->andWhere('s.etat = 5 ');
+        }
+
+        if ($dateLimiteInscription != null) {
+            $query->andWhere('s.dateHeureDebut < :dateHeureDebut')
+                ->setParameter('dateHeureDebut', $dateLimiteInscription);
+            $query->orderBy('s.dateHeureDebut', 'ASC');
+        }
+
+        if ($dateHeureDebut != null) {
+            $query->andWhere('s.dateLimiteInscription > :dateLimiteInscription')
+                ->setParameter('dateLimiteInscription', $dateHeureDebut);
+            $query->orderBy('s.dateHeureDebut', 'ASC');
+        }
+
+        return $query->getQuery()->getResult();
+    }
+
 
 //    /**
 //     * @return Sortie[] Returns an array of Sortie objects

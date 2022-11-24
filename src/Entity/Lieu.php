@@ -6,6 +6,7 @@ use App\Repository\LieuRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: LieuRepository::class)]
 class Lieu
@@ -13,26 +14,23 @@ class Lieu
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('listeSortie:read')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
+    #[Groups('listeSortie:read')]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('listeSortie:read')]
     private ?string $rue = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?float $latitude = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?float $longitude = null;
+    #[ORM\OneToMany(mappedBy: 'lieu', targetEntity: Sortie::class)]
+    private Collection $sorties;
 
     #[ORM\ManyToOne(inversedBy: 'lieux')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Ville $ville = null;
-
-    #[ORM\OneToMany(mappedBy: 'lieu', targetEntity: Sortie::class)]
-    private Collection $sorties;
 
     public function __construct()
     {
@@ -68,42 +66,6 @@ class Lieu
         return $this;
     }
 
-    public function getLatitude(): ?float
-    {
-        return $this->latitude;
-    }
-
-    public function setLatitude(?float $latitude): self
-    {
-        $this->latitude = $latitude;
-
-        return $this;
-    }
-
-    public function getLongitude(): ?float
-    {
-        return $this->longitude;
-    }
-
-    public function setLongitude(?float $longitude): self
-    {
-        $this->longitude = $longitude;
-
-        return $this;
-    }
-
-    public function getVille(): ?Ville
-    {
-        return $this->ville;
-    }
-
-    public function setVille(?Ville $ville): self
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Sortie>
      */
@@ -132,5 +94,22 @@ class Lieu
         }
 
         return $this;
+    }
+
+    public function getVille(): ?Ville
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?Ville $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getNom();
     }
 }

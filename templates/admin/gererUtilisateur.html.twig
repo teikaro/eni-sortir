@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}Utilisateurs
+{% endblock %}
+
+{% block body %}
+
+    {% include'admin/inc/_navAdmin.html.twig' %}
+
+    <h3>Utilisateur Actif</h3>
+    <a href="{{ path('admin_gerer_utilisateur_non_actif') }}">Utilisateur Non Actif</a>
+
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>E-mail</th>
+            <th>Telephone</th>
+            <th>Campus</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+        {% for utilisateurActif in utilisateursActif %}
+            <tr>
+                <td>
+                    <a href="{{ path('app_participant_profil', {'id':utilisateurActif.id}) }}">
+                        {{ utilisateurActif.nom }}
+                    </a>
+                </td>
+                <td>{{ utilisateurActif.prenom }}</td>
+                <td>{{ utilisateurActif.email }}</td>
+                <td>{{ utilisateurActif.telephone }}</td>
+                <td>{{ utilisateurActif.campus.nom }}</td>
+                <td>{{ utilisateurActif.roles|join('') }}</td>
+                <td>
+                    <a href="{{ path('admin_desactiver_utilisateur', {'id':utilisateurActif.id}) }}"
+                       onclick="return confirm('Voulez vous désactiver l\'utilisateur');">Désactiver</a>
+                    {% if utilisateurActif is not same as app.user and is_granted('ROLE_ADMIN', {'id':utilisateurActif.id})  %}
+                        <a href="{{ path('admin_attribution_role', {'id':utilisateurActif.id}) }}"
+                            onclick="return confirm('Êtes vous sûr de donner les droits d\'Administrateur à cet utilisatuer?')">Attribué le Rôle Admin</a>
+                    {% endif %}
+
+                    <a href="{{ path('admin_supprimer_utilisateur', {'id':utilisateurActif.id}) }}"
+                         onclick="return confirm('Voulez vous supprimer l\'utilisateur ?');">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ path('admin-creer-utilisateur') }}">Créer un Utilisateur</a>
+
+{#
+    <script>
+        function show_alert() {
+            if (confirm("Voulez vous vraiment supprimer l'utilisateur ?")) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+#}
+{% endblock %}
+
+
+

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Organiser{% endblock %}
+{% block script %}
+    <script src="{{ asset('js/choixVille.js') }}" defer></script>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .popUp {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="formContainer">
+        <div class="responsiveFormContainer">
+            <h2>Organiser une sortie</h2>
+            {{ form_start(form) }}
+            <div class="inputField">
+                <label for="nom">Titre</label>
+                {{ form_widget(form.nom) }}
+            </div>
+            <div class="inputField">
+                <label for="dateHeureDebut">Date et heure de début</label>
+                {{ form_widget(form.dateHeureDebut) }}
+            </div>
+            <div class="inputField">
+                <label for="duree">Durée estimée</label>
+                {{ form_widget(form.duree) }}
+            </div>
+            <div class="inputField">
+                <label for="dateLimiteInscription">Date et heure de début</label>
+                {{ form_widget(form.dateLimiteInscription) }}
+            </div>
+            <div class="inputField">
+                <label for="nbInscriptionsMax">Nombre de place</label>
+                {{ form_widget(form.nbInscriptionsMax) }}
+            </div>
+            <div class="inputField">
+                <label for="infosSortie">Description</label>
+                {{ form_widget(form.infosSortie) }}
+            </div>
+            <div class="inputField">
+                <label for="ville">Ville</label>
+                {{ form_widget(form.ville) }}
+                {{ form_widget(form.chercherLieu) }}
+            </div>
+            <div class="inputField">
+                <label for="lieu">Lieu</label>
+                {{ form_widget(form.lieu) }}
+                <a class="purpleLink" href="{{ path('app_lieu_new') }}" target="_blank">Ajouter un lieu</a>
+            </div>
+            <div class="buttonContainer">
+                <a class="whiteButton" href="{{ path('app_main_connecte') }}">Annuler</a>
+                <button type="submit" class="whiteButton">Sauvegarder</button>
+                {{ form_widget(form.publier) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+        <img src="{{ asset('img/newSortie2.svg') }}" alt="Organiser">
+    </div>
+{% endblock %}
+

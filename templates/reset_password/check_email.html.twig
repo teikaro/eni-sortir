@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Password Reset Email Sent{% endblock %}
+
+{% block body %}
+    <div class="containerFlex">
+        <div class="successModal">
+            <img src="{{ asset('img/success.svg') }}" alt="Succès">
+            <h4>Récupération de mot de passe</h4>
+            <h3>
+                Si un compte correspond à l'email que vous avez entré, un email vous sera envoyé avec un lien qui
+                expirera dans 1 heure.
+            </h3>
+            <h3>Si vous n'avez reçu d'email, vérifiez votre boîte de spam ou <a class="purpleLink"
+                                                                                href="{{ path('app_forgot_password_request') }}">réessayez</a>.
+            </h3>
+        </div>
+    </div>
+{% endblock %}

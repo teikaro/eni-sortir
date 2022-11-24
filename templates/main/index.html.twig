@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Accueil{% endblock %}
+
+{% block body %}
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Organisez vos sorties comme vous le souhaitez !</h1>
+            <p>Choisissez votre campus, retrouvez vos camarades, vos professeurs, vos amis, et amusez vous !</p>
+
+            {% if app.user %}
+
+            {% else %}
+
+            <div class="heroButtons">
+                <a class="whitePurpleButton" href="{{ asset(path('app_login')) }}">Se connecter</a>
+                <a class="purpleButton" href="{{ asset(path('app_register')) }}">S'inscrire</a>
+            </div>
+
+            {% endif %}
+
+        </div>
+        <img src="{{ asset('img/hero2.svg') }}" alt="Illustration" width="650px">
+    </div>
+{% endblock %}

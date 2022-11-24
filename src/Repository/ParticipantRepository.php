@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Participant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
@@ -18,7 +17,7 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  * @method Participant[]    findAll()
  * @method Participant[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ParticipantRepository extends ServiceEntityRepository implements PasswordUpgraderInterface, UserLoaderInterface
+class ParticipantRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -56,20 +55,36 @@ class ParticipantRepository extends ServiceEntityRepository implements PasswordU
 
         $this->save($user, true);
     }
-	
-	public function loadUserByIdentifier(string $pseudoOrEmail): ?Participant
-	{
-		$entityManager = $this->getEntityManager();
-		
-		return $entityManager->createQuery(
-			'SELECT p
-                FROM App\Entity\Participant p
-                WHERE p.pseudo = :query
-                OR p.email = :query'
-		)
-			->setParameter('query', $pseudoOrEmail)
-			->getOneOrNullResult();
-	}
+
+    public function afficherTousLesUtilisateursActifs()
+    {
+        $qb = $this->createQueryBuilder('participant')
+            ->andWhere('participant.actif = 1')
+            ->orderBy('participant.nom', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    //Utilisateur désactivé
+    public function afficherTousLesutilisateursInactifs()
+    {
+        $qb = $this->createQueryBuilder('participant')
+            ->andWhere('participant.actif = 0')
+            ->orderBy('participant.nom', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
+
+
+    public function participantParSortie($id)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.sortieInscrit = :id')
+            ->setParameter('id', $id);
+
+        return $qb->getQuery()->getResult();
+    }
+
 
 //    /**
 //     * @return Participant[] Returns an array of Participant objects
