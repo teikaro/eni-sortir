@@ -24,7 +24,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $random = rand(1, 9);
+            $random = rand(1, 7);
 
             $user->setAdministrateur(false);
             $user->setActif(true);

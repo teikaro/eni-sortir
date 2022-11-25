@@ -92,23 +92,23 @@
                             {% set compteurParticipantInscrit = 0 %}
 
                             {% for participant in sortie.participants %}
-                                {% if participant is same as (app.user) %}
+                                {% if participant is same as (app.user) and sortie.etat.libelle == 'Ouverte'%}
                                     {% set compteurParticipantInscrit = compteurParticipantInscrit +1 %}
                                     <a href="{{ path('app_desistement_sortie', {'id': sortie.id}) }}"><img
                                                 src="{{ asset('img/removeUser.svg') }}" alt="Se désister"></a>
                                 {% endif %}
                             {% endfor %}
 
-                            {% if compteurParticipantInscrit == 0 %}
+                            {% if compteurParticipantInscrit == 0 and sortie.etat.libelle == 'Ouverte' %}
                                 <a href="{{ path('app_inscription_sortie', {'id': sortie.id}) }}"><img
                                             src="{{ asset('img/addUser.svg') }}" alt="S'inscrire"></a>
                             {% endif %}
-                            {% if sortie.organisateur is same as  app.user %}
+                            {% if sortie.organisateur is same as  app.user and sortie.etat.libelle == 'Créee' %}
                                 <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}"><img
                                             src="{{ asset('img/edit.svg') }}" alt="Modifier"></a>
                             {% endif %}
 
-                            {% if sortie.organisateur is same as app.user or is_granted('ROLE_ADMIN') %}
+                            {% if sortie.organisateur is same as app.user and sortie.etat.libelle == 'Ouverte' or sortie.organisateur is same as app.user and sortie.etat.libelle == 'Créee' %}
                                 <a href="{{ path('app_sortie_annulation', {'id': sortie.id}) }}"><img
                                             src="{{ asset('img/trash.svg') }}" alt="Annuler"></a>
                             {% endif %}
